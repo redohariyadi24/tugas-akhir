@@ -54,9 +54,9 @@ class ProdukResource extends Resource
         return $table
             ->columns([
                 ImageColumn::make('gambar'),
-                TextColumn::make('nama'),
-                TextColumn::make('artis.nama'),
-                TextColumn::make('kategori.nama'),
+                TextColumn::make('nama')->searchable()->sortable(),
+                TextColumn::make('artis.nama')->searchable()->sortable(),
+                TextColumn::make('kategori.nama')->searchable()->sortable(),
                 TextColumn::make('stok')
                     ->numeric(
                         decimalPlaces: 0,

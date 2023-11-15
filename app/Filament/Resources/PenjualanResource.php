@@ -62,9 +62,9 @@ class PenjualanResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('tanggal'),
-                TextColumn::make('user.name'),
-                TextColumn::make('produk.nama'),
+                TextColumn::make('tanggal')->sortable()->searchable(),
+                TextColumn::make('user.name')->searchable(),
+                TextColumn::make('produk.nama')->searchable(),
                 TextColumn::make('jumlah'),
                 TextColumn::make('total')
                     ->money('IDR'),
@@ -74,13 +74,14 @@ class PenjualanResource extends Resource
                         'diproses' => 'warning',
                         'dalam pengiriman' => 'info',
                         'selesai' => 'success',
-                    })
+                    })->searchable()
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make()
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
